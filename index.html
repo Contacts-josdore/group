@@ -1,0 +1,937 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="JosDore — La technologie au service de la communauté. Maintenance, boutique, formations et impact social au Bénin.">
+<title>JosDore — La technologie au service de la communauté</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 80 80'%3E%3Crect width='80' height='80' rx='22' fill='%230A2540'/%3E%3Ctext x='40' y='58' font-family='sans-serif' font-size='52' font-weight='900' fill='%23F59E0B' text-anchor='middle'%3EJ%3C/text%3E%3Ccircle cx='62' cy='18' r='6' fill='%23F59E0B'/%3E%3C/svg%3E">
+<style>
+:root {
+  --bleu-nuit: #0A2540;
+  --bleu-clair: #1E3A5F;
+  --or: #F59E0B;
+  --or-fonce: #D97706;
+  --gris-fonce: #1E293B;
+  --gris: #64748B;
+  --gris-clair: #E2E8F0;
+  --fond: #F8FAFC;
+  --blanc: #FFFFFF;
+  --tech: #2563EB;
+  --store: #16A34A;
+  --academy: #EAB308;
+  --impact: #BE123C;
+  --font: 'Inter', sans-serif;
+  --radius: 12px;
+  --radius-lg: 20px;
+  --shadow-sm: 0 1px 3px rgba(10, 37, 64, 0.08);
+  --shadow-md: 0 8px 24px rgba(10, 37, 64, 0.10);
+  --shadow-lg: 0 20px 48px rgba(10, 37, 64, 0.15);
+  --transition: 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+*, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+html { scroll-behavior: smooth; scroll-padding-top: 80px; }
+body { font-family: var(--font); font-size: 16px; line-height: 1.6; color: var(--gris-fonce); background: var(--blanc); -webkit-font-smoothing: antialiased; overflow-x: hidden; }
+img { max-width: 100%; display: block; }
+a { text-decoration: none; color: inherit; transition: var(--transition); }
+ul { list-style: none; }
+.container { width: 100%; max-width: 1200px; margin: 0 auto; padding: 0 24px; }
+.text-or { color: var(--or); }
+
+/* BOUTONS */
+.btn { display: inline-flex; align-items: center; justify-content: center; gap: 8px; padding: 14px 28px; font-family: var(--font); font-size: 15px; font-weight: 600; border-radius: var(--radius); border: 2px solid transparent; cursor: pointer; transition: var(--transition); white-space: nowrap; }
+.btn--primary { background: var(--or); color: var(--bleu-nuit); border-color: var(--or); }
+.btn--primary:hover { background: var(--or-fonce); border-color: var(--or-fonce); transform: translateY(-2px); box-shadow: var(--shadow-md); }
+.btn--ghost { background: transparent; color: #fff; border-color: rgba(255,255,255,0.4); }
+.btn--ghost:hover { background: rgba(255,255,255,0.1); border-color: #fff; }
+.btn--dark { background: var(--bleu-nuit); color: #fff; border-color: var(--bleu-nuit); }
+.btn--dark:hover { background: var(--bleu-clair); border-color: var(--bleu-clair); transform: translateY(-2px); }
+
+/* EN-TÊTE */
+.header { position: fixed; top: 0; left: 0; right: 0; z-index: 1000; padding: 16px 0; background: rgba(10,37,64,0.95); backdrop-filter: blur(12px); box-shadow: var(--shadow-sm); transition: var(--transition); }
+.header__container { display: flex; align-items: center; justify-content: space-between; }
+.logo { display: flex; align-items: center; gap: 10px; cursor: pointer; }
+.logo__mark { width: 40px; height: 40px; background: var(--or); border-radius: 10px; display: flex; align-items: center; justify-content: center; position: relative; }
+.logo__mark::after { content: ''; position: absolute; top: 8px; right: 8px; width: 5px; height: 5px; background: var(--bleu-nuit); border-radius: 50%; }
+.logo__mark span { font-size: 20px; font-weight: 900; color: var(--bleu-nuit); }
+.logo__text { font-size: 22px; font-weight: 900; color: #fff; letter-spacing: -0.5px; }
+.logo__text span { color: var(--or); }
+.nav__list { display: flex; align-items: center; gap: 4px; }
+.nav__link { display: inline-block; padding: 8px 16px; color: rgba(255,255,255,0.85); font-size: 15px; font-weight: 500; border-radius: 8px; cursor: pointer; border: none; background: none; font-family: inherit; }
+.nav__link:hover { color: #fff; background: rgba(255,255,255,0.08); }
+.nav__link.is-active { color: var(--or); }
+.nav__link--cta { background: var(--or); color: var(--bleu-nuit) !important; font-weight: 600; }
+.nav__link--cta:hover { background: var(--or-fonce); }
+.burger { display: none; flex-direction: column; gap: 5px; background: transparent; border: none; cursor: pointer; padding: 8px; }
+.burger span { display: block; width: 24px; height: 2px; background: #fff; border-radius: 2px; transition: var(--transition); }
+.burger.is-active span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+.burger.is-active span:nth-child(2) { opacity: 0; }
+.burger.is-active span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+
+/* PAGES */
+.page { display: none; }
+.page.is-active { display: block; animation: fadeIn 0.5s ease; }
+@keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+
+/* HÉRO */
+.hero { position: relative; min-height: 100vh; display: flex; align-items: center; justify-content: center; background: linear-gradient(135deg, #0A2540 0%, #1E3A5F 100%); overflow: hidden; color: #fff; text-align: center; }
+.hero::before { content: ''; position: absolute; inset: 0; background: radial-gradient(circle at 20% 30%, rgba(245,158,11,0.15) 0%, transparent 50%), radial-gradient(circle at 80% 70%, rgba(37,99,235,0.2) 0%, transparent 50%); }
+.hero__overlay { position: absolute; inset: 0; background-image: linear-gradient(rgba(255,255,255,0.03) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.03) 1px, transparent 1px); background-size: 60px 60px; }
+.hero__container { position: relative; z-index: 2; padding: 120px 24px 80px; }
+.hero__eyebrow { display: inline-block; padding: 8px 18px; background: rgba(245,158,11,0.12); border: 1px solid rgba(245,158,11,0.3); border-radius: 100px; color: var(--or); font-size: 14px; font-weight: 600; margin-bottom: 24px; letter-spacing: 0.5px; }
+.hero__title { font-size: clamp(2rem, 6vw, 4rem); font-weight: 900; line-height: 1.1; letter-spacing: -0.02em; margin-bottom: 20px; }
+.hero__subtitle { font-size: clamp(1rem, 2vw, 1.25rem); color: rgba(255,255,255,0.75); margin-bottom: 40px; letter-spacing: 1px; }
+.hero__actions { display: flex; gap: 16px; justify-content: center; flex-wrap: wrap; }
+
+/* PAGE HERO INTERNE */
+.page-hero { position: relative; padding: 160px 0 80px; background: linear-gradient(135deg, #0A2540 0%, #1E3A5F 100%); color: #fff; text-align: center; overflow: hidden; }
+.page-hero::before { content: ''; position: absolute; inset: 0; background: radial-gradient(circle at 30% 50%, rgba(245,158,11,0.12) 0%, transparent 50%); }
+.page-hero__container { position: relative; z-index: 2; max-width: 800px; margin: 0 auto; }
+.page-hero__badge { display: inline-flex; align-items: center; gap: 8px; padding: 8px 20px; border-radius: 100px; font-size: 14px; font-weight: 700; margin-bottom: 20px; letter-spacing: 1px; text-transform: uppercase; }
+.page-hero__badge--tech { background: rgba(37,99,235,0.2); color: #93C5FD; border: 1px solid rgba(37,99,235,0.4); }
+.page-hero__badge--store { background: rgba(22,163,74,0.2); color: #86EFAC; border: 1px solid rgba(22,163,74,0.4); }
+.page-hero__badge--academy { background: rgba(234,179,8,0.2); color: #FDE047; border: 1px solid rgba(234,179,8,0.4); }
+.page-hero__badge--impact { background: rgba(190,18,60,0.2); color: #FCA5A5; border: 1px solid rgba(190,18,60,0.4); }
+.page-hero__badge--or { background: rgba(245,158,11,0.2); color: #FCD34D; border: 1px solid rgba(245,158,11,0.4); }
+.page-hero__title { font-size: clamp(2rem, 5vw, 3.25rem); font-weight: 900; line-height: 1.15; margin-bottom: 16px; }
+.page-hero__desc { font-size: 1.1rem; color: rgba(255,255,255,0.75); margin-bottom: 32px; max-width: 640px; margin-left: auto; margin-right: auto; }
+
+/* SECTION HEAD */
+.section-head { max-width: 720px; margin: 0 auto 60px; text-align: center; }
+.section-head__eyebrow { display: inline-block; color: var(--or); font-size: 13px; font-weight: 700; text-transform: uppercase; letter-spacing: 2px; margin-bottom: 12px; }
+.section-head__title { font-size: clamp(1.75rem, 4vw, 2.5rem); font-weight: 900; color: var(--bleu-nuit); line-height: 1.2; margin-bottom: 16px; letter-spacing: -1px; }
+.section-head__desc { color: var(--gris); font-size: 1.05rem; }
+
+/* PÔLES */
+.poles { padding: 100px 0; background: var(--blanc); }
+.poles__grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 24px; }
+.pole { position: relative; padding: 32px 28px; background: #fff; border: 1px solid var(--gris-clair); border-radius: var(--radius-lg); transition: var(--transition); overflow: hidden; cursor: pointer; }
+.pole::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 4px; }
+.pole--tech::before { background: var(--tech); }
+.pole--store::before { background: var(--store); }
+.pole--academy::before { background: var(--academy); }
+.pole--impact::before { background: var(--impact); }
+.pole:hover { transform: translateY(-8px); box-shadow: var(--shadow-lg); border-color: transparent; }
+.pole__icon { width: 56px; height: 56px; border-radius: 14px; display: flex; align-items: center; justify-content: center; margin-bottom: 20px; }
+.pole--tech .pole__icon { background: rgba(37,99,235,0.1); color: var(--tech); }
+.pole--store .pole__icon { background: rgba(22,163,74,0.1); color: var(--store); }
+.pole--academy .pole__icon { background: rgba(234,179,8,0.15); color: #CA8A04; }
+.pole--impact .pole__icon { background: rgba(190,18,60,0.1); color: var(--impact); }
+.pole__title { font-size: 1.5rem; font-weight: 900; color: var(--bleu-nuit); margin-bottom: 12px; letter-spacing: -0.5px; }
+.pole__desc { color: var(--gris); font-size: 0.95rem; margin-bottom: 20px; }
+.pole__link { display: inline-flex; align-items: center; gap: 4px; font-weight: 600; color: var(--bleu-nuit); font-size: 0.95rem; }
+.pole:hover .pole__link { color: var(--or); }
+
+/* WHY */
+.why { padding: 100px 0; background: var(--fond); }
+.why__grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 24px; }
+.why__item { text-align: center; padding: 32px 20px; background: #fff; border-radius: var(--radius-lg); box-shadow: var(--shadow-sm); transition: var(--transition); }
+.why__item:hover { transform: translateY(-4px); box-shadow: var(--shadow-md); }
+.why__icon { width: 56px; height: 56px; background: rgba(245,158,11,0.12); color: var(--or); border-radius: 50%; display: inline-flex; align-items: center; justify-content: center; margin-bottom: 16px; }
+.why__item h4 { font-size: 1.1rem; font-weight: 800; color: var(--bleu-nuit); margin-bottom: 8px; }
+.why__item p { color: var(--gris); font-size: 0.9rem; }
+
+/* QUOTE */
+.quote { padding: 100px 0; background: linear-gradient(135deg, #0A2540 0%, #1E3A5F 100%); color: #fff; text-align: center; position: relative; overflow: hidden; }
+.quote::before { content: '"'; position: absolute; top: 40px; left: 50%; transform: translateX(-50%); font-size: 200px; color: rgba(245,158,11,0.08); line-height: 1; font-weight: 900; }
+.quote__container { position: relative; z-index: 2; max-width: 800px; margin: 0 auto; }
+.quote__text { font-size: clamp(1.25rem, 3vw, 1.75rem); font-weight: 700; line-height: 1.5; margin-bottom: 24px; }
+.quote__author { color: rgba(255,255,255,0.7); font-size: 1rem; }
+.quote__author strong { color: var(--or); }
+
+/* CTA */
+.cta { padding: 100px 0; background: var(--blanc); text-align: center; }
+.cta__title { font-size: clamp(1.75rem, 4vw, 2.5rem); font-weight: 900; color: var(--bleu-nuit); margin-bottom: 16px; letter-spacing: -1px; }
+.cta__desc { color: var(--gris); font-size: 1.1rem; margin-bottom: 40px; max-width: 600px; margin-left: auto; margin-right: auto; }
+.cta__actions { display: flex; gap: 16px; justify-content: center; flex-wrap: wrap; }
+
+/* SERVICES */
+.services { padding: 100px 0; background: var(--blanc); }
+.services--alt { background: var(--fond); }
+.services__grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 24px; }
+.service-card { padding: 32px 28px; background: #fff; border: 1px solid var(--gris-clair); border-radius: var(--radius-lg); transition: var(--transition); }
+.service-card:hover { transform: translateY(-6px); box-shadow: var(--shadow-lg); border-color: transparent; }
+.service-card__icon { width: 56px; height: 56px; background: var(--fond); border-radius: var(--radius); display: flex; align-items: center; justify-content: center; margin-bottom: 20px; color: var(--bleu-nuit); }
+.service-card__title { font-size: 1.25rem; font-weight: 800; color: var(--bleu-nuit); margin-bottom: 12px; }
+.service-card__desc { color: var(--gris); font-size: 0.95rem; margin-bottom: 16px; }
+.service-card__price { font-size: 1.1rem; font-weight: 800; color: var(--or); }
+
+/* PRODUITS */
+.products { padding: 100px 0; background: var(--fond); }
+.products--alt { background: var(--blanc); }
+.products__grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 24px; }
+.product-card { background: #fff; border-radius: var(--radius-lg); overflow: hidden; box-shadow: var(--shadow-sm); transition: var(--transition); }
+.product-card:hover { transform: translateY(-6px); box-shadow: var(--shadow-lg); }
+.product-card__image { aspect-ratio: 1; background: var(--fond); display: flex; align-items: center; justify-content: center; color: var(--gris); }
+.product-card__body { padding: 20px; }
+.product-card__title { font-size: 1rem; font-weight: 800; color: var(--bleu-nuit); margin-bottom: 8px; }
+.product-card__price { font-size: 1.1rem; font-weight: 800; color: var(--or); margin-bottom: 16px; }
+.product-card__btn { display: block; width: 100%; padding: 10px; background: var(--bleu-nuit); color: #fff; border: none; border-radius: var(--radius); font-weight: 600; cursor: pointer; transition: var(--transition); font-family: inherit; font-size: 14px; }
+.product-card__btn:hover { background: var(--or); color: var(--bleu-nuit); }
+
+/* CATÉGORIES */
+.categories { padding: 60px 0; background: var(--blanc); }
+.categories__grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(160px, 1fr)); gap: 16px; }
+.category-card { padding: 24px 16px; text-align: center; background: #fff; border: 1px solid var(--gris-clair); border-radius: var(--radius-lg); transition: var(--transition); cursor: pointer; }
+.category-card:hover { border-color: var(--or); transform: translateY(-4px); box-shadow: var(--shadow-md); }
+.category-card__icon { width: 48px; height: 48px; margin: 0 auto 12px; background: var(--fond); border-radius: 12px; display: flex; align-items: center; justify-content: center; color: var(--bleu-nuit); }
+.category-card__title { font-size: 0.95rem; font-weight: 800; color: var(--bleu-nuit); }
+
+/* FORMULAIRE */
+.form { max-width: 640px; margin: 0 auto; background: #fff; padding: 48px 40px; border-radius: var(--radius-lg); box-shadow: var(--shadow-md); }
+.form__group { margin-bottom: 20px; }
+.form__label { display: block; font-size: 0.9rem; font-weight: 600; color: var(--bleu-nuit); margin-bottom: 8px; }
+.form__input, .form__textarea, .form__select { width: 100%; padding: 14px 16px; font-family: var(--font); font-size: 15px; color: var(--gris-fonce); background: var(--fond); border: 2px solid transparent; border-radius: var(--radius); transition: var(--transition); }
+.form__input:focus, .form__textarea:focus, .form__select:focus { outline: none; border-color: var(--or); background: #fff; }
+.form__textarea { min-height: 140px; resize: vertical; }
+
+/* FOOTER */
+.footer { background: var(--bleu-nuit); color: rgba(255,255,255,0.75); padding: 80px 0 0; }
+.footer__container { display: grid; grid-template-columns: 2fr 1fr 1fr 1fr 1fr; gap: 40px; padding-bottom: 60px; }
+.footer__brand .logo { margin-bottom: 16px; }
+.footer__tagline { font-size: 0.9rem; color: rgba(255,255,255,0.6); max-width: 280px; }
+.footer__col h5 { font-size: 1rem; font-weight: 800; color: #fff; margin-bottom: 16px; }
+.footer__col ul li { margin-bottom: 10px; }
+.footer__col ul a { font-size: 0.9rem; color: rgba(255,255,255,0.65); cursor: pointer; }
+.footer__col ul a:hover { color: var(--or); }
+.footer__bottom { border-top: 1px solid rgba(255,255,255,0.1); padding: 24px 0; }
+.footer__bottom-container { display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 12px; font-size: 0.85rem; color: rgba(255,255,255,0.5); }
+
+/* TO TOP */
+.to-top { position: fixed; bottom: 24px; right: 24px; width: 48px; height: 48px; background: var(--or); color: var(--bleu-nuit); border: none; border-radius: 50%; cursor: pointer; box-shadow: var(--shadow-md); opacity: 0; visibility: hidden; transform: translateY(20px); transition: var(--transition); z-index: 999; display: flex; align-items: center; justify-content: center; }
+.to-top.is-visible { opacity: 1; visibility: visible; transform: translateY(0); }
+.to-top:hover { background: var(--or-fonce); transform: translateY(-4px); }
+
+/* CHARTE */
+.charte-section { padding: 80px 0; border-bottom: 1px solid var(--gris-clair); background: var(--blanc); }
+.charte-section:nth-child(even) { background: var(--fond); }
+.charte-section:last-child { border-bottom: none; }
+.charte-section__number { font-size: 13px; font-weight: 800; color: var(--or); letter-spacing: 3px; text-transform: uppercase; margin-bottom: 12px; }
+.charte-section__title { font-size: 40px; font-weight: 900; letter-spacing: -1.5px; color: var(--bleu-nuit); margin-bottom: 16px; }
+.charte-section__desc { font-size: 17px; color: var(--gris); max-width: 680px; margin-bottom: 56px; }
+.grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 32px; }
+.grid-3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; }
+.grid-4 { display: grid; grid-template-columns: repeat(4, 1fr); gap: 20px; }
+.charte-card { background: #fff; border: 1px solid var(--gris-clair); border-radius: 16px; padding: 32px; }
+.charte-card--dark { background: var(--bleu-nuit); border-color: var(--bleu-nuit); color: #fff; }
+.charte-label { font-size: 11px; font-weight: 800; color: var(--gris); letter-spacing: 2px; text-transform: uppercase; margin-bottom: 16px; }
+.charte-card--dark .charte-label { color: rgba(255,255,255,0.5); }
+.logo-showcase { display: flex; align-items: center; justify-content: center; min-height: 160px; background: var(--fond); border-radius: 12px; padding: 32px; }
+.logo-showcase--dark { background: var(--bleu-nuit); }
+.color-swatch { border-radius: 16px; overflow: hidden; border: 1px solid var(--gris-clair); }
+.color-swatch__preview { height: 120px; display: flex; align-items: flex-end; padding: 16px; color: #fff; font-size: 12px; font-weight: 800; letter-spacing: 1px; }
+.color-swatch__info { padding: 20px; background: #fff; }
+.color-swatch__name { font-size: 15px; font-weight: 800; color: var(--bleu-nuit); margin-bottom: 4px; }
+.color-swatch__codes { font-size: 12px; color: var(--gris); font-family: 'SF Mono', Monaco, monospace; line-height: 1.8; }
+.font-specimen { padding: 32px; background: #fff; border: 1px solid var(--gris-clair); border-radius: 16px; margin-bottom: 16px; }
+.font-display { font-size: 56px; font-weight: 900; letter-spacing: -2px; color: var(--bleu-nuit); margin-bottom: 8px; }
+.font-meta { display: flex; gap: 24px; font-size: 12px; color: var(--gris); font-family: 'SF Mono', Monaco, monospace; padding-top: 16px; border-top: 1px solid var(--gris-clair); margin-top: 16px; flex-wrap: wrap; }
+.rule-card { border-radius: 16px; padding: 24px; background: #fff; border: 1px solid var(--gris-clair); }
+.rule-card__title { font-size: 13px; font-weight: 800; letter-spacing: 1px; text-transform: uppercase; margin-bottom: 16px; display: flex; align-items: center; gap: 8px; }
+.rule-card--do .rule-card__title { color: #16A34A; }
+.rule-card--dont .rule-card__title { color: #DC2626; }
+.rule-card__visual { background: var(--fond); border-radius: 12px; padding: 24px; display: flex; align-items: center; justify-content: center; min-height: 140px; margin-bottom: 16px; }
+.rule-card__desc { font-size: 13px; color: var(--gris); line-height: 1.6; }
+.icon-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(120px, 1fr)); gap: 16px; }
+.icon-box { aspect-ratio: 1; background: #fff; border: 1px solid var(--gris-clair); border-radius: 12px; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 8px; padding: 16px; transition: var(--transition); cursor: pointer; }
+.icon-box:hover { border-color: var(--or); transform: translateY(-4px); box-shadow: var(--shadow-md); }
+.icon-box svg { color: var(--bleu-nuit); }
+.icon-box__label { font-size: 10px; font-weight: 700; color: var(--gris); letter-spacing: 1px; text-transform: uppercase; text-align: center; }
+
+/* RESPONSIVE */
+@media (max-width: 992px) {
+  .footer__container { grid-template-columns: 1fr 1fr; gap: 32px; }
+  .footer__brand { grid-column: 1 / -1; }
+  .grid-3, .grid-4 { grid-template-columns: 1fr 1fr; }
+}
+@media (max-width: 768px) {
+  .burger { display: flex; }
+  .nav { position: fixed; top: 0; right: -100%; width: 280px; height: 100vh; background: var(--bleu-nuit); padding: 100px 32px 40px; transition: right 0.4s cubic-bezier(0.4, 0, 0.2, 1); box-shadow: -10px 0 40px rgba(0,0,0,0.3); overflow-y: auto; }
+  .nav.is-open { right: 0; }
+  .nav__list { flex-direction: column; align-items: flex-start; gap: 4px; }
+  .nav__link { width: 100%; padding: 12px 16px; font-size: 16px; text-align: left; }
+  .nav__link--cta { text-align: center; margin-top: 12px; }
+  .hero__actions { flex-direction: column; align-items: center; }
+  .hero__actions .btn { width: 100%; max-width: 280px; }
+  .cta__actions { flex-direction: column; align-items: center; }
+  .cta__actions .btn { width: 100%; max-width: 280px; }
+  .footer__container { grid-template-columns: 1fr; text-align: center; }
+  .footer__tagline { max-width: 100%; }
+  .grid-2, .grid-3, .grid-4 { grid-template-columns: 1fr; }
+  .charte-section__title { font-size: 28px; }
+  .font-display { font-size: 36px; }
+  .form { padding: 32px 24px; }
+}
+@media (max-width: 480px) {
+  .container { padding: 0 16px; }
+  .hero__container { padding: 100px 16px 60px; }
+  .pole { padding: 24px 20px; }
+  .page-hero { padding: 130px 0 60px; }
+}
+.reveal { opacity: 0; transform: translateY(30px); transition: opacity 0.7s ease, transform 0.7s ease; }
+.reveal.is-visible { opacity: 1; transform: translateY(0); }
+</style>
+</head>
+<body>
+
+<header class="header">
+  <div class="container header__container">
+    <a class="logo" onclick="goTo('accueil')">
+      <div class="logo__mark"><span>J</span></div>
+      <span class="logo__text">Jos<span>Dore</span></span>
+    </a>
+    <nav class="nav" id="nav">
+      <ul class="nav__list">
+        <li><button class="nav__link" data-page="accueil" onclick="goTo('accueil')">Accueil</button></li>
+        <li><button class="nav__link" data-page="tech" onclick="goTo('tech')">Tech</button></li>
+        <li><button class="nav__link" data-page="store" onclick="goTo('store')">Store</button></li>
+        <li><button class="nav__link" data-page="academy" onclick="goTo('academy')">Academy</button></li>
+        <li><button class="nav__link" data-page="impact" onclick="goTo('impact')">Impact</button></li>
+        <li><button class="nav__link" data-page="charte" onclick="goTo('charte')">Charte</button></li>
+        <li><button class="nav__link" data-page="icones" onclick="goTo('icones')">Icônes</button></li>
+        <li><button class="nav__link nav__link--cta" onclick="goTo('accueil', 'contact')">Contact</button></li>
+      </ul>
+    </nav>
+    <button class="burger" id="burger" aria-label="Menu"><span></span><span></span><span></span></button>
+  </div>
+</header>
+
+<!-- ==================== ACCUEIL ==================== -->
+<main id="page-accueil" class="page is-active">
+  <section class="hero">
+    <div class="hero__overlay"></div>
+    <div class="container hero__container">
+      <p class="hero__eyebrow">Bénin 🇧🇯 · Depuis 2026</p>
+      <h1 class="hero__title">La technologie au service<br>de la <span class="text-or">communauté</span>.</h1>
+      <p class="hero__subtitle">Réparer · Former · Équiper · Transmettre</p>
+      <div class="hero__actions">
+        <button class="btn btn--primary" onclick="scrollToId('poles')">Découvrir JosDore</button>
+        <button class="btn btn--ghost" onclick="goTo('charte')">Voir la charte</button>
+      </div>
+    </div>
+  </section>
+
+  <section class="poles" id="poles">
+    <div class="container">
+      <div class="section-head">
+        <p class="section-head__eyebrow">Notre écosystème</p>
+        <h2 class="section-head__title">Quatre pôles, une seule mission</h2>
+        <p class="section-head__desc">JosDore rassemble la technologie, le commerce, l'éducation et l'impact social sous une même marque.</p>
+      </div>
+      <div class="poles__grid">
+        <article class="pole pole--tech" onclick="goTo('tech')">
+          <div class="pole__icon"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="6" y="6" width="12" height="12" rx="2"/><path d="M9 1v3M15 1v3M9 20v3M15 20v3M1 9h3M1 15h3M20 9h3M20 15h3"/></svg></div>
+          <h3 class="pole__title">Tech</h3>
+          <p class="pole__desc">Maintenance informatique à domicile et en entreprise. Outils gratuits.</p>
+          <span class="pole__link">Explorer →</span>
+        </article>
+        <article class="pole pole--store" onclick="goTo('store')">
+          <div class="pole__icon"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/><path d="M3 6h18"/><path d="M16 10a4 4 0 0 1-8 0"/></svg></div>
+          <h3 class="pole__title">Store</h3>
+          <p class="pole__desc">Votre boutique informatique en ligne. Ordinateurs, accessoires et livres.</p>
+          <span class="pole__link">Explorer →</span>
+        </article>
+        <article class="pole pole--academy" onclick="goTo('academy')">
+          <div class="pole__icon"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 10L12 5 2 10l10 5 10-5z"/><path d="M6 12v5c0 1.7 2.7 3 6 3s6-1.3 6-3v-5"/></svg></div>
+          <h3 class="pole__title">Academy</h3>
+          <p class="pole__desc">Formations numériques, cours d'anglais avec tuteur IA et jeux éducatifs.</p>
+          <span class="pole__link">Explorer →</span>
+        </article>
+        <article class="pole pole--impact" onclick="goTo('impact')">
+          <div class="pole__icon"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg></div>
+          <h3 class="pole__title">Impact</h3>
+          <p class="pole__desc">Dons de PC aux élèves méritants et réseau social des techniciens.</p>
+          <span class="pole__link">Explorer →</span>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <section class="why">
+    <div class="container">
+      <div class="section-head">
+        <p class="section-head__eyebrow">Pourquoi nous choisir</p>
+        <h2 class="section-head__title">Des valeurs concrètes</h2>
+      </div>
+      <div class="why__grid">
+        <div class="why__item"><div class="why__icon"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg></div><h4>Services fiables</h4><p>Une équipe locale compétente et réactive.</p></div>
+        <div class="why__item"><div class="why__icon"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg></div><h4>Prix accessibles</h4><p>Des tarifs pensés pour le contexte africain.</p></div>
+        <div class="why__item"><div class="why__icon"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg></div><h4>Équipe locale</h4><p>Basée au Bénin, proche de vous.</p></div>
+        <div class="why__item"><div class="why__icon"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg></div><h4>Impact social</h4><p>Chaque achat soutient notre fondation.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="quote">
+    <div class="container quote__container">
+      <blockquote class="quote__text">« JosDore, c'est mon prénom. C'est aussi ma promesse : mettre la technologie au service de notre communauté. »</blockquote>
+      <p class="quote__author">— <strong>Ulrich Jos Doré HOUNKPE</strong>, Fondateur</p>
+    </div>
+  </section>
+
+  <section class="cta" id="contact">
+    <div class="container">
+      <h2 class="cta__title">Prêt à démarrer ?</h2>
+      <p class="cta__desc">Une réparation, un achat, une formation ou un don ? Nous sommes là.</p>
+      <div class="cta__actions">
+        <a href="mailto:contact@josdore.com" class="btn btn--primary">contact@josdore.com</a>
+        <a href="https://wa.me/" class="btn btn--dark">WhatsApp</a>
+      </div>
+    </div>
+  </section>
+</main>
+
+<!-- ==================== TECH ==================== -->
+<main id="page-tech" class="page">
+  <section class="page-hero">
+    <div class="container page-hero__container">
+      <span class="page-hero__badge page-hero__badge--tech">Tech</span>
+      <h1 class="page-hero__title">Maintenance informatique fiable</h1>
+      <p class="page-hero__desc">Réparation, installation, dépannage à domicile et en entreprise. Une équipe locale, des prix accessibles, un service de qualité.</p>
+      <div class="hero__actions">
+        <button class="btn btn--primary" onclick="scrollToId('tech-contact')">Demander un devis</button>
+        <button class="btn btn--ghost" onclick="scrollToId('tech-services')">Voir les services</button>
+      </div>
+    </div>
+  </section>
+
+  <section class="services" id="tech-services">
+    <div class="container">
+      <div class="section-head"><p class="section-head__eyebrow">Nos services</p><h2 class="section-head__title">Ce que nous faisons</h2></div>
+      <div class="services__grid">
+        <div class="service-card"><div class="service-card__icon"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="14" rx="2"/><path d="M8 20h8M12 18v2"/><path d="M12 8v4M10 10h4"/></svg></div><h3 class="service-card__title">Réparation PC & smartphones</h3><p class="service-card__desc">Diagnostic, réparation matérielle et logicielle, remplacement de pièces.</p><p class="service-card__price">À partir de 5 000 CFA</p></div>
+        <div class="service-card"><div class="service-card__icon"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12.55a11 11 0 0 1 14.08 0"/><path d="M1.42 9a16 16 0 0 1 21.16 0"/><path d="M8.53 16.11a6 6 0 0 1 6.95 0"/><circle cx="12" cy="20" r="1" fill="currentColor"/></svg></div><h3 class="service-card__title">Installation réseau & WiFi</h3><p class="service-card__desc">Configuration de box, routeurs, câblage réseau pour maison et bureau.</p><p class="service-card__price">À partir de 10 000 CFA</p></div>
+        <div class="service-card"><div class="service-card__icon"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"/><path d="M13.73 21a2 2 0 0 1-3.46 0"/></svg></div><h3 class="service-card__title">Dépannage à distance</h3><p class="service-card__desc">Assistance rapide par téléphone ou en ligne, sans vous déplacer.</p><p class="service-card__price">À partir de 3 000 CFA</p></div>
+        <div class="service-card"><div class="service-card__icon"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><path d="M9 12l2 2 4-4"/></svg></div><h3 class="service-card__title">Sécurité & antivirus</h3><p class="service-card__desc">Installation d'antivirus, nettoyage de virus, sécurisation de vos données.</p><p class="service-card__price">À partir de 4 000 CFA</p></div>
+        <div class="service-card"><div class="service-card__icon"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><path d="M7 10l5 5 5-5M12 15V3"/></svg></div><h3 class="service-card__title">Installation logiciels</h3><p class="service-card__desc">Bureautique, design, développement : nous installons ce dont vous avez besoin.</p><p class="service-card__price">À partir de 2 500 CFA</p></div>
+        <div class="service-card"><div class="service-card__icon"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2v4M12 18v4M4.93 4.93l2.83 2.83M16.24 16.24l2.83 2.83M2 12h4M18 12h4M4.93 19.07l2.83-2.83M16.24 7.76l2.83-2.83"/><circle cx="12" cy="12" r="3"/></svg></div><h3 class="service-card__title">Nettoyage & optimisation</h3><p class="service-card__desc">Votre ordinateur est lent ? Nous le nettoyons et l'optimisons.</p><p class="service-card__price">À partir de 3 500 CFA</p></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="services services--alt" id="tech-contact">
+    <div class="container">
+      <div class="section-head"><p class="section-head__eyebrow">Devis gratuit</p><h2 class="section-head__title">Demandez votre devis</h2><p class="section-head__desc">Réponse sous 24h. Devis gratuit et sans engagement.</p></div>
+      <form class="form" onsubmit="handleSubmit(event)">
+        <div class="form__group"><label class="form__label">Nom complet</label><input class="form__input" type="text" required></div>
+        <div class="form__group"><label class="form__label">Email</label><input class="form__input" type="email" required></div>
+        <div class="form__group"><label class="form__label">Service souhaité</label><select class="form__select"><option>Choisir...</option><option>Réparation PC & smartphones</option><option>Installation réseau & WiFi</option><option>Dépannage à distance</option><option>Sécurité & antivirus</option><option>Installation logiciels</option><option>Nettoyage & optimisation</option></select></div>
+        <div class="form__group"><label class="form__label">Message</label><textarea class="form__textarea" placeholder="Décrivez votre besoin..."></textarea></div>
+        <button type="submit" class="btn btn--primary" style="width:100%;">Envoyer la demande</button>
+      </form>
+    </div>
+  </section>
+</main>
+
+<!-- ==================== STORE ==================== -->
+<main id="page-store" class="page">
+  <section class="page-hero">
+    <div class="container page-hero__container">
+      <span class="page-hero__badge page-hero__badge--store">Store</span>
+      <h1 class="page-hero__title">Votre boutique informatique en ligne</h1>
+      <p class="page-hero__desc">Ordinateurs, accessoires, composants et livres africains. Livraison au Bénin, paiement sécurisé.</p>
+      <div class="hero__actions">
+        <button class="btn btn--primary" onclick="scrollToId('store-products')">Voir les produits</button>
+        <button class="btn btn--ghost" onclick="scrollToId('store-books')">Découvrir les livres</button>
+      </div>
+    </div>
+  </section>
+
+  <section class="categories">
+    <div class="container">
+      <div class="section-head"><p class="section-head__eyebrow">Catégories</p><h2 class="section-head__title">Que cherchez-vous ?</h2></div>
+      <div class="categories__grid">
+        <div class="category-card"><div class="category-card__icon"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="12" rx="2"/><path d="M2 20h20"/></svg></div><h3 class="category-card__title">PC portables</h3></div>
+        <div class="category-card"><div class="category-card__icon"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8M12 17v4"/></svg></div><h3 class="category-card__title">PC bureau</h3></div>
+        <div class="category-card"><div class="category-card__icon"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="7" y="2" width="10" height="20" rx="2"/><path d="M11 18h2"/></svg></div><h3 class="category-card__title">Accessoires</h3></div>
+        <div class="category-card"><div class="category-card__icon"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="4" width="16" height="16" rx="2"/><path d="M9 9h6v6H9z"/></svg></div><h3 class="category-card__title">Composants</h3></div>
+        <div class="category-card"><div class="category-card__icon"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/></svg></div><h3 class="category-card__title">Livres</h3></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="products" id="store-products">
+    <div class="container">
+      <div class="section-head"><p class="section-head__eyebrow">Produits populaires</p><h2 class="section-head__title">Nos meilleures ventes</h2></div>
+      <div class="products__grid">
+        <div class="product-card"><div class="product-card__image"><svg width="60" height="60" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="12" rx="2"/><path d="M2 20h20"/></svg></div><div class="product-card__body"><h3 class="product-card__title">PC Portable HP 15"</h3><p class="product-card__price">250 000 CFA</p><button class="product-card__btn" onclick="alert('Produit ajouté au panier !')">Ajouter au panier</button></div></div>
+        <div class="product-card"><div class="product-card__image"><svg width="60" height="60" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="7" y="2" width="10" height="20" rx="2"/><path d="M11 18h2"/></svg></div><div class="product-card__body"><h3 class="product-card__title">Souris sans fil</h3><p class="product-card__price">8 000 CFA</p><button class="product-card__btn" onclick="alert('Produit ajouté au panier !')">Ajouter au panier</button></div></div>
+        <div class="product-card"><div class="product-card__image"><svg width="60" height="60" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><path d="M7 10l5 5 5-5M12 15V3"/></svg></div><div class="product-card__body"><h3 class="product-card__title">Clé USB 64 Go</h3><p class="product-card__price">5 000 CFA</p><button class="product-card__btn" onclick="alert('Produit ajouté au panier !')">Ajouter au panier</button></div></div>
+        <div class="product-card"><div class="product-card__image"><svg width="60" height="60" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="6" width="20" height="12" rx="2"/><path d="M6 10h.01M6 14h.01M10 10h.01M10 14h.01M14 10h.01M14 14h.01M18 10h.01M18 14h.01"/></svg></div><div class="product-card__body"><h3 class="product-card__title">Clavier AZERTY</h3><p class="product-card__price">12 000 CFA</p><button class="product-card__btn" onclick="alert('Produit ajouté au panier !')">Ajouter au panier</button></div></div>
+        <div class="product-card"><div class="product-card__image"><svg width="60" height="60" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M3 18v-6a9 9 0 0 1 18 0v6"/><path d="M21 19a2 2 0 0 1-2 2h-1a2 2 0 0 1-2-2v-3a2 2 0 0 1 2-2h3zM3 19a2 2 0 0 0 2 2h1a2 2 0 0 0 2-2v-3a2 2 0 0 0-2-2H3z"/></svg></div><div class="product-card__body"><h3 class="product-card__title">Casque audio</h3><p class="product-card__price">15 000 CFA</p><button class="product-card__btn" onclick="alert('Produit ajouté au panier !')">Ajouter au panier</button></div></div>
+        <div class="product-card"><div class="product-card__image"><svg width="60" height="60" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"/><circle cx="12" cy="13" r="4"/></svg></div><div class="product-card__body"><h3 class="product-card__title">Webcam HD</h3><p class="product-card__price">18 000 CFA</p><button class="product-card__btn" onclick="alert('Produit ajouté au panier !')">Ajouter au panier</button></div></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="products products--alt" id="store-books">
+    <div class="container">
+      <div class="section-head"><p class="section-head__eyebrow">JosDore Books</p><h2 class="section-head__title">Livres & e-books africains</h2><p class="section-head__desc">Découvrez notre sélection d'auteurs africains.</p></div>
+      <div class="products__grid">
+        <div class="product-card"><div class="product-card__image"><svg width="60" height="60" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg></div><div class="product-card__body"><h3 class="product-card__title">Le Baobab Mystérieux</h3><p class="product-card__price">5 000 CFA</p><button class="product-card__btn" onclick="alert('Livre ajouté au panier !')">Acheter</button></div></div>
+        <div class="product-card"><div class="product-card__image"><svg width="60" height="60" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg></div><div class="product-card__body"><h3 class="product-card__title">Contes du Bénin</h3><p class="product-card__price">7 000 CFA</p><button class="product-card__btn" onclick="alert('Livre ajouté au panier !')">Acheter</button></div></div>
+        <div class="product-card"><div class="product-card__image"><svg width="60" height="60" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg></div><div class="product-card__body"><h3 class="product-card__title">L'Avenir Tech Africain</h3><p class="product-card__price">6 500 CFA</p><button class="product-card__btn" onclick="alert('Livre ajouté au panier !')">Acheter</button></div></div>
+        <div class="product-card"><div class="product-card__image"><svg width="60" height="60" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg></div><div class="product-card__body"><h3 class="product-card__title">Histoires de Cotonou</h3><p class="product-card__price">4 500 CFA</p><button class="product-card__btn" onclick="alert('Livre ajouté au panier !')">Acheter</button></div></div>
+      </div>
+    </div>
+  </section>
+</main>
+
+<!-- ==================== ACADEMY ==================== -->
+<main id="page-academy" class="page">
+  <section class="page-hero">
+    <div class="container page-hero__container">
+      <span class="page-hero__badge page-hero__badge--academy">Academy</span>
+      <h1 class="page-hero__title">Apprenez les compétences de demain</h1>
+      <p class="page-hero__desc">Formations numériques, cours d'anglais avec tuteur IA et jeux éducatifs pour apprendre en s'amusant.</p>
+      <div class="hero__actions">
+        <button class="btn btn--primary" onclick="scrollToId('academy-formations')">Voir les formations</button>
+        <button class="btn btn--ghost" onclick="scrollToId('academy-english')">Cours d'anglais</button>
+      </div>
+    </div>
+  </section>
+
+  <section class="services" id="academy-formations">
+    <div class="container">
+      <div class="section-head"><p class="section-head__eyebrow">Nos formations</p><h2 class="section-head__title">Développez vos compétences</h2></div>
+      <div class="services__grid">
+        <div class="service-card"><div class="service-card__icon"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18M9 21V9"/></svg></div><h3 class="service-card__title">Bureautique</h3><p class="service-card__desc">Word, Excel, PowerPoint : maîtrisez les outils essentiels du bureau.</p><p class="service-card__price">15 000 CFA / mois</p></div>
+        <div class="service-card"><div class="service-card__icon"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="3"/></svg></div><h3 class="service-card__title">Design graphique</h3><p class="service-card__desc">Photoshop, Canva, Illustrator : créez des visuels professionnels.</p><p class="service-card__price">20 000 CFA / mois</p></div>
+        <div class="service-card"><div class="service-card__icon"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 18l6-6-6-6M8 6l-6 6 6 6"/></svg></div><h3 class="service-card__title">Développement web</h3><p class="service-card__desc">HTML, CSS, JavaScript : apprenez à créer vos propres sites.</p><p class="service-card__price">25 000 CFA / mois</p></div>
+        <div class="service-card"><div class="service-card__icon"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 11l19-9-9 19-2-8-8-2z"/></svg></div><h3 class="service-card__title">Marketing digital</h3><p class="service-card__desc">Réseaux sociaux, SEO, publicité en ligne : développez votre présence.</p><p class="service-card__price">20 000 CFA / mois</p></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="services services--alt" id="academy-english">
+    <div class="container">
+      <div class="section-head"><p class="section-head__eyebrow">JosDore English</p><h2 class="section-head__title">Cours d'anglais avec tuteur IA</h2><p class="section-head__desc">Apprenez l'anglais à votre rythme, avec un tuteur intelligent disponible 24h/24.</p></div>
+      <div class="services__grid">
+        <div class="service-card"><div class="service-card__icon" style="color:#16A34A;"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M2 12h20M12 2a15 15 0 0 1 0 20M12 2a15 15 0 0 0 0 20"/></svg></div><h3 class="service-card__title">Débutant</h3><p class="service-card__desc">Alphabet, salutations, phrases de base.</p><p class="service-card__price">Gratuit</p></div>
+        <div class="service-card"><div class="service-card__icon" style="color:#EAB308;"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M2 12h20M12 2a15 15 0 0 1 0 20M12 2a15 15 0 0 0 0 20"/></svg></div><h3 class="service-card__title">Intermédiaire</h3><p class="service-card__desc">Conversations, grammaire, vocabulaire étendu.</p><p class="service-card__price">5 000 CFA / mois</p></div>
+        <div class="service-card"><div class="service-card__icon" style="color:#DC2626;"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M2 12h20M12 2a15 15 0 0 1 0 20M12 2a15 15 0 0 0 0 20"/></svg></div><h3 class="service-card__title">Avancé</h3><p class="service-card__desc">Business English, expressions idiomatiques.</p><p class="service-card__price">10 000 CFA / mois</p></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="products" id="academy-games">
+    <div class="container">
+      <div class="section-head"><p class="section-head__eyebrow">JosDore Games</p><h2 class="section-head__title">Apprenez en jouant</h2><p class="section-head__desc">24 jeux éducatifs pour enfants et adultes.</p></div>
+      <div class="categories__grid">
+        <div class="category-card"><div class="category-card__icon"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 20V10M12 20V4M6 20v-6"/></svg></div><h3 class="category-card__title">Maths</h3></div>
+        <div class="category-card"><div class="category-card__icon"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 7V4h16v3M9 20h6M12 4v16"/></svg></div><h3 class="category-card__title">Mots</h3></div>
+        <div class="category-card"><div class="category-card__icon"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"/><path d="M12 17h.01"/></svg></div><h3 class="category-card__title">Logique</h3></div>
+        <div class="category-card"><div class="category-card__icon"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M2 12h20M12 2a15 15 0 0 1 0 20M12 2a15 15 0 0 0 0 20"/></svg></div><h3 class="category-card__title">Géographie</h3></div>
+        <div class="category-card"><div class="category-card__icon"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 3H5a2 2 0 0 0-2 2v4M9 3h10a2 2 0 0 1 2 2v4M3 9v10a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V9M9 3v18M15 3v18"/></svg></div><h3 class="category-card__title">Sciences</h3></div>
+        <div class="category-card"><div class="category-card__icon"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="13.5" cy="6.5" r="2.5"/><circle cx="19" cy="13" r="2.5"/><circle cx="6" cy="12" r="2.5"/><circle cx="10" cy="19" r="2.5"/></svg></div><h3 class="category-card__title">Créativité</h3></div>
+      </div>
+    </div>
+  </section>
+</main>
+
+<!-- ==================== IMPACT ==================== -->
+<main id="page-impact" class="page">
+  <section class="page-hero">
+    <div class="container page-hero__container">
+      <span class="page-hero__badge page-hero__badge--impact">Impact</span>
+      <h1 class="page-hero__title">Donner, rassembler, transmettre</h1>
+      <p class="page-hero__desc">Parce que la technologie doit profiter à tous, JosDore s'engage pour l'éducation et la communauté tech africaine.</p>
+      <div class="hero__actions">
+        <button class="btn btn--primary" onclick="scrollToId('impact-fondation')">Découvrir la fondation</button>
+        <button class="btn btn--ghost" onclick="scrollToId('impact-social')">Rejoindre le réseau</button>
+      </div>
+    </div>
+  </section>
+
+  <section class="services" id="impact-fondation">
+    <div class="container">
+      <div class="section-head"><p class="section-head__eyebrow">JosDore Foundation</p><h2 class="section-head__title">Donnons des PC aux élèves</h2><p class="section-head__desc">Chaque ordinateur donné est une porte ouverte vers l'avenir.</p></div>
+      <div class="services__grid">
+        <div class="service-card"><div class="service-card__icon"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 20V10M12 20V4M6 20v-6"/></svg></div><h3 class="service-card__title">Notre impact</h3><p class="service-card__desc"><strong>50 PC</strong> donnés · <strong>10 écoles</strong> partenaires · <strong>200 élèves</strong> équipés</p></div>
+        <div class="service-card"><div class="service-card__icon"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="6"/><circle cx="12" cy="12" r="2"/></svg></div><h3 class="service-card__title">Notre mission</h3><p class="service-card__desc">Réduire la fracture numérique en équipant les élèves méritants qui n'ont pas les moyens.</p></div>
+        <div class="service-card"><div class="service-card__icon"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg></div><h3 class="service-card__title">Comment aider ?</h3><p class="service-card__desc">Faites un don, offrez un PC d'occasion, ou devenez partenaire de la fondation.</p></div>
+      </div>
+      <div style="text-align:center; margin-top:40px;"><button class="btn btn--primary" onclick="alert('Merci pour votre générosité !')">Faire un don</button></div>
+    </div>
+  </section>
+
+  <section class="services services--alt" id="impact-social">
+    <div class="container">
+      <div class="section-head"><p class="section-head__eyebrow">JosDore Social</p><h2 class="section-head__title">Le réseau social des techniciens</h2><p class="section-head__desc">Connectez-vous avec d'autres techniciens africains, partagez vos connaissances et trouvez des missions.</p></div>
+      <div class="services__grid">
+        <div class="service-card"><div class="service-card__icon"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg></div><h3 class="service-card__title">Créez votre profil</h3><p class="service-card__desc">Montrez vos compétences, votre expérience et votre portfolio technique.</p></div>
+        <div class="service-card"><div class="service-card__icon"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg></div><h3 class="service-card__title">Échangez</h3><p class="service-card__desc">Partagez vos astuces, posez des questions, aidez d'autres techniciens.</p></div>
+        <div class="service-card"><div class="service-card__icon"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 11l19-9-9 19-2-8-8-2z"/></svg></div><h3 class="service-card__title">Trouvez des missions</h3><p class="service-card__desc">Accédez aux offres de missions et de collaborations dans toute l'Afrique de l'Ouest.</p></div>
+      </div>
+      <div style="text-align:center; margin-top:40px;"><button class="btn btn--dark" onclick="alert('Bienvenue dans la communauté JosDore !')">Rejoindre la communauté</button></div>
+    </div>
+  </section>
+</main>
+
+<!-- ==================== CHARTE ==================== -->
+<main id="page-charte" class="page">
+  <section class="page-hero">
+    <div class="container page-hero__container">
+      <span class="page-hero__badge page-hero__badge--or">Charte</span>
+      <h1 class="page-hero__title">Charte graphique JosDore</h1>
+      <p class="page-hero__desc">Le guide complet de l'identité visuelle : logo, couleurs, typographie, icônes.</p>
+    </div>
+  </section>
+
+  <section class="charte-section">
+    <div class="container">
+      <p class="charte-section__number">01 — Logo</p>
+      <h2 class="charte-section__title">Le logo JosDore</h2>
+      <p class="charte-section__desc">Un carré bleu nuit, la lettre J en or, et un point doré en signature.</p>
+      <div class="grid-2" style="margin-bottom:32px;">
+        <div class="charte-card">
+          <p class="charte-label">Version principale</p>
+          <div class="logo-showcase" style="background:#fff;">
+            <div style="display:flex; align-items:center; gap:14px;">
+              <div style="width:56px; height:56px; background:#0A2540; border-radius:16px; display:flex; align-items:center; justify-content:center; position:relative;"><span style="font-size:34px; font-weight:900; color:#F59E0B;">J</span><div style="position:absolute; top:10px; right:10px; width:8px; height:8px; background:#F59E0B; border-radius:50%;"></div></div>
+              <div style="font-size:34px; font-weight:900; color:#0A2540; letter-spacing:-1px;">Jos<span style="color:#F59E0B;">Dore</span></div>
+            </div>
+          </div>
+        </div>
+        <div class="charte-card charte-card--dark">
+          <p class="charte-label">Version inversée</p>
+          <div class="logo-showcase logo-showcase--dark">
+            <div style="display:flex; align-items:center; gap:14px;">
+              <div style="width:56px; height:56px; background:#F59E0B; border-radius:16px; display:flex; align-items:center; justify-content:center; position:relative;"><span style="font-size:34px; font-weight:900; color:#0A2540;">J</span><div style="position:absolute; top:10px; right:10px; width:8px; height:8px; background:#0A2540; border-radius:50%;"></div></div>
+              <div style="font-size:34px; font-weight:900; color:#fff; letter-spacing:-1px;">Jos<span style="color:#F59E0B;">Dore</span></div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="grid-3">
+        <div class="charte-card"><p class="charte-label">Icône seule</p><div class="logo-showcase" style="background:#fff;"><div style="width:80px; height:80px; background:#0A2540; border-radius:22px; display:flex; align-items:center; justify-content:center; position:relative;"><span style="font-size:48px; font-weight:900; color:#F59E0B;">J</span><div style="position:absolute; top:14px; right:14px; width:10px; height:10px; background:#F59E0B; border-radius:50%;"></div></div></div></div>
+        <div class="charte-card"><p class="charte-label">Wordmark</p><div class="logo-showcase" style="background:#fff;"><div style="font-size:32px; font-weight:900; color:#0A2540; letter-spacing:-1px; position:relative; padding-right:20px;">Jos<span style="color:#F59E0B;">Dore</span><div style="position:absolute; top:4px; right:0; width:8px; height:8px; background:#F59E0B; border-radius:50%;"></div></div></div></div>
+        <div class="charte-card"><p class="charte-label">Monochrome</p><div class="logo-showcase" style="background:#fff;"><div style="display:flex; align-items:center; gap:12px;"><div style="width:48px; height:48px; background:#0A2540; border-radius:14px; display:flex; align-items:center; justify-content:center;"><span style="font-size:28px; font-weight:900; color:#fff;">J</span></div><div style="font-size:28px; font-weight:900; color:#0A2540; letter-spacing:-1px;">JosDore</div></div></div></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="charte-section">
+    <div class="container">
+      <p class="charte-section__number">02 — Règles</p>
+      <h2 class="charte-section__title">Utilisation du logo</h2>
+      <p class="charte-section__desc">Le logo doit toujours être utilisé avec soin.</p>
+      <div class="grid-2">
+        <div class="rule-card rule-card--do">
+          <div class="rule-card__title">✓ À faire</div>
+          <div class="rule-card__visual"><div style="display:flex; align-items:center; gap:12px;"><div style="width:48px; height:48px; background:#0A2540; border-radius:14px; display:flex; align-items:center; justify-content:center; position:relative;"><span style="font-size:28px; font-weight:900; color:#F59E0B;">J</span><div style="position:absolute; top:8px; right:8px; width:6px; height:6px; background:#F59E0B; border-radius:50%;"></div></div><div style="font-size:28px; font-weight:900; color:#0A2540; letter-spacing:-1px;">Jos<span style="color:#F59E0B;">Dore</span></div></div></div>
+          <p class="rule-card__desc">Utiliser la version principale sur fond clair, avec un espace de respiration autour du logo.</p>
+        </div>
+        <div class="rule-card rule-card--dont">
+          <div class="rule-card__title">✗ À ne pas faire</div>
+          <div class="rule-card__visual"><div style="display:flex; align-items:center; gap:12px; transform: rotate(-8deg);"><div style="width:48px; height:48px; background:#DC2626; border-radius:14px; display:flex; align-items:center; justify-content:center;"><span style="font-size:28px; font-weight:900; color:#fff;">J</span></div><div style="font-size:28px; font-weight:900; color:#DC2626; letter-spacing:-1px;">JosDore</div></div></div>
+          <p class="rule-card__desc">Ne jamais déformer, incliner, changer les couleurs, ni utiliser une autre police.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="charte-section">
+    <div class="container">
+      <p class="charte-section__number">03 — Couleurs</p>
+      <h2 class="charte-section__title">La palette JosDore</h2>
+      <p class="charte-section__desc">Deux couleurs principales, deux couleurs de support.</p>
+      <div class="grid-4">
+        <div class="color-swatch"><div class="color-swatch__preview" style="background:#0A2540;">BLEU NUIT</div><div class="color-swatch__info"><div class="color-swatch__name">Bleu nuit</div><div class="color-swatch__codes">HEX · #0A2540<br>RGB · 10, 37, 64<br>CMYK · 84, 42, 0, 75</div></div></div>
+        <div class="color-swatch"><div class="color-swatch__preview" style="background:#F59E0B; color:#0A2540;">OR</div><div class="color-swatch__info"><div class="color-swatch__name">Or</div><div class="color-swatch__codes">HEX · #F59E0B<br>RGB · 245, 158, 11<br>CMYK · 0, 36, 96, 4</div></div></div>
+        <div class="color-swatch"><div class="color-swatch__preview" style="background:#1E3A5F;">BLEU CLAIR</div><div class="color-swatch__info"><div class="color-swatch__name">Bleu clair</div><div class="color-swatch__codes">HEX · #1E3A5F<br>RGB · 30, 58, 95<br>Usage · dégradés</div></div></div>
+        <div class="color-swatch"><div class="color-swatch__preview" style="background:#F8FAFC; color:#0A2540;">FOND</div><div class="color-swatch__info"><div class="color-swatch__name">Fond clair</div><div class="color-swatch__codes">HEX · #F8FAFC<br>RGB · 248, 250, 252<br>Usage · arrière-plans</div></div></div>
+      </div>
+      <div class="charte-card" style="margin-top:32px;">
+        <p class="charte-label">Répartition d'usage recommandée</p>
+        <div style="display:flex; height:60px; border-radius:12px; overflow:hidden;"><div style="flex:60; background:#0A2540; display:flex; align-items:center; justify-content:center; color:#fff; font-size:13px; font-weight:800;">60%</div><div style="flex:30; background:#fff; display:flex; align-items:center; justify-content:center; color:#0A2540; font-size:13px; font-weight:800; border:1px solid #E2E8F0;">30%</div><div style="flex:10; background:#F59E0B; display:flex; align-items:center; justify-content:center; color:#0A2540; font-size:13px; font-weight:800;">10%</div></div>
+        <p style="font-size:13px; color:#64748B; margin-top:16px;">60% bleu nuit (dominant) · 30% blanc (espace) · 10% or (accent)</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="charte-section">
+    <div class="container">
+      <p class="charte-section__number">04 — Typographie</p>
+      <h2 class="charte-section__title">La police JosDore</h2>
+      <p class="charte-section__desc">Une seule police pour tout : Inter. Moderne, lisible, gratuite.</p>
+      <div class="font-specimen"><p class="charte-label">Inter — Graisse 900 (Black)</p><div class="font-display">JosDore</div><p style="font-size:14px; color:#64748B; margin-top:8px;">Usage : titres, logo, éléments marketing</p><div class="font-meta"><span>Poids : 900</span><span>Usage : H1, H2, logo</span><span>Letter-spacing : -2px</span></div></div>
+      <div class="font-specimen"><p class="charte-label">Inter — Graisse 700 (Bold)</p><div style="font-size:32px; font-weight:700; color:#0A2540; letter-spacing:-1px;">Sous-titres et accroches</div><div class="font-meta"><span>Poids : 700</span><span>Usage : H3, H4, boutons</span><span>Letter-spacing : -0.5px</span></div></div>
+      <div class="font-specimen"><p class="charte-label">Inter — Graisse 400 (Regular)</p><div style="font-size:17px; color:#1E293B; line-height:1.7;">Inter est une police moderne et lisible, conçue pour les interfaces numériques. Elle offre une excellente lisibilité sur tous les écrans, du mobile au grand écran.</div><div class="font-meta"><span>Poids : 400</span><span>Usage : paragraphes</span><span>Taille : 15-17px</span></div></div>
+    </div>
+  </section>
+
+  <section class="charte-section">
+    <div class="container">
+      <p class="charte-section__number">05 — Icônes des pôles</p>
+      <h2 class="charte-section__title">Les icônes JosDore</h2>
+      <p class="charte-section__desc">Style ligne fine, 2px, coins arrondis. Une couleur par pôle.</p>
+      <div class="grid-3">
+        <div class="charte-card" style="text-align:center;"><div style="width:80px; height:80px; background:rgba(37,99,235,0.1); border-radius:20px; display:inline-flex; align-items:center; justify-content:center; color:#2563EB; margin-bottom:20px;"><svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="6" y="6" width="12" height="12" rx="2"/><path d="M9 1v3M15 1v3M9 20v3M15 20v3M1 9h3M1 15h3M20 9h3M20 15h3"/></svg></div><p class="charte-label" style="margin-bottom:8px;">Tech</p><p style="font-size:13px; color:#64748B;">Puce électronique</p></div>
+        <div class="charte-card" style="text-align:center;"><div style="width:80px; height:80px; background:rgba(22,163,74,0.1); border-radius:20px; display:inline-flex; align-items:center; justify-content:center; color:#16A34A; margin-bottom:20px;"><svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/><path d="M3 6h18"/><path d="M16 10a4 4 0 0 1-8 0"/></svg></div><p class="charte-label" style="margin-bottom:8px;">Store</p><p style="font-size:13px; color:#64748B;">Sac de shopping</p></div>
+        <div class="charte-card" style="text-align:center;"><div style="width:80px; height:80px; background:rgba(234,179,8,0.15); border-radius:20px; display:inline-flex; align-items:center; justify-content:center; color:#CA8A04; margin-bottom:20px;"><svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 10L12 5 2 10l10 5 10-5z"/><path d="M6 12v5c0 1.7 2.7 3 6 3s6-1.3 6-3v-5"/></svg></div><p class="charte-label" style="margin-bottom:8px;">Academy</p><p style="font-size:13px; color:#64748B;">Chapeau de diplôme</p></div>
+        <div class="charte-card" style="text-align:center;"><div style="width:80px; height:80px; background:rgba(190,18,60,0.1); border-radius:20px; display:inline-flex; align-items:center; justify-content:center; color:#BE123C; margin-bottom:20px;"><svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg></div><p class="charte-label" style="margin-bottom:8px;">Impact</p><p style="font-size:13px; color:#64748B;">Cœur</p></div>
+        <div class="charte-card" style="text-align:center;"><div style="width:80px; height:80px; background:rgba(220,38,38,0.1); border-radius:20px; display:inline-flex; align-items:center; justify-content:center; color:#DC2626; margin-bottom:20px;"><svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/></svg></div><p class="charte-label" style="margin-bottom:8px;">Learn</p><p style="font-size:13px; color:#64748B;">Livre ouvert</p></div>
+        <div class="charte-card" style="text-align:center;"><div style="width:80px; height:80px; background:rgba(245,158,11,0.12); border-radius:20px; display:inline-flex; align-items:center; justify-content:center; color:#F59E0B; margin-bottom:20px;"><svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"/><circle cx="4" cy="6" r="2"/><circle cx="20" cy="6" r="2"/><circle cx="4" cy="18" r="2"/><circle cx="20" cy="18" r="2"/><path d="M9.5 10.5L5.5 7M14.5 10.5l4-3.5M9.5 13.5l-4 3.5M14.5 13.5l4 3.5"/></svg></div><p class="charte-label" style="margin-bottom:8px;">Network</p><p style="font-size:13px; color:#64748B;">Nœuds connectés</p></div>
+      </div>
+    </div>
+  </section>
+</main>
+
+<!-- ==================== ICÔNES ==================== -->
+<main id="page-icones" class="page">
+  <section class="page-hero">
+    <div class="container page-hero__container">
+      <span class="page-hero__badge page-hero__badge--or">Bibliothèque</span>
+      <h1 class="page-hero__title">Icônes JosDore</h1>
+      <p class="page-hero__desc">78 icônes SVG professionnelles. Style 2px, coins arrondis, grille 24×24.</p>
+    </div>
+  </section>
+
+  <section class="charte-section">
+    <div class="container">
+      <p class="charte-section__number">01 — Pôles</p>
+      <h2 class="charte-section__title">Les 6 pôles</h2>
+      <div class="icon-grid">
+        <div class="icon-box"><svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="6" y="6" width="12" height="12" rx="2"/><path d="M9 1v3M15 1v3M9 20v3M15 20v3M1 9h3M1 15h3M20 9h3M20 15h3"/></svg><div class="icon-box__label">Tech</div></div>
+        <div class="icon-box"><svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/><path d="M3 6h18"/><path d="M16 10a4 4 0 0 1-8 0"/></svg><div class="icon-box__label">Store</div></div>
+        <div class="icon-box"><svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/></svg><div class="icon-box__label">Learn</div></div>
+        <div class="icon-box"><svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 10L12 5 2 10l10 5 10-5z"/><path d="M6 12v5c0 1.7 2.7 3 6 3s6-1.3 6-3v-5"/></svg><div class="icon-box__label">Academy</div></div>
+        <div class="icon-box"><svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg><div class="icon-box__label">Impact</div></div>
+        <div class="icon-box"><svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"/><circle cx="4" cy="6" r="2"/><circle cx="20" cy="6" r="2"/><circle cx="4" cy="18" r="2"/><circle cx="20" cy="18" r="2"/><path d="M9.5 10.5L5.5 7M14.5 10.5l4-3.5M9.5 13.5l-4 3.5M14.5 13.5l4 3.5"/></svg><div class="icon-box__label">Network</div></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="charte-section">
+    <div class="container">
+      <p class="charte-section__number">02 — Tech</p>
+      <h2 class="charte-section__title">Services techniques</h2>
+      <div class="icon-grid">
+        <div class="icon-box"><svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="14" rx="2"/><path d="M8 20h8M12 18v2"/><path d="M12 8v4M10 10h4"/></svg><div class="icon-box__label">Réparation</div></div>
+        <div class="icon-box"><svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12.55a11 11 0 0 1 14.08 0"/><path d="M1.42 9a16 16 0 0 1 21.16 0"/><path d="M8.53 16.11a6 6 0 0 1 6.95 0"/><circle cx="12" cy="20" r="1" fill="currentColor"/></svg><div class="icon-box__label">WiFi</div></div>
+        <div class="icon-box"><svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"/><path d="M13.73 21a2 2 0 0 1-3.46 0"/></svg><div class="icon-box__label">Notification</div></div>
+        <div class="icon-box"><svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><path d="M9 12l2 2 4-4"/></svg><div class="icon-box__label">Sécurité</div></div>
+        <div class="icon-box"><svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><path d="M7 10l5 5 5-5M12 15V3"/></svg><div class="icon-box__label">Installation</div></div>
+        <div class="icon-box"><svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2v4M12 18v4M4.93 4.93l2.83 2.83M16.24 16.24l2.83 2.83M2 12h4M18 12h4M4.93 19.07l2.83-2.83M16.24 7.76l2.83-2.83"/><circle cx="12" cy="12" r="3"/></svg><div class="icon-box__label">Optimisation</div></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="charte-section">
+    <div class="container">
+      <p class="charte-section__number">03 — Interface</p>
+      <h2 class="charte-section__title">Icônes d'interface</h2>
+      <div class="icon-grid">
+        <div class="icon-box"><svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M3 6h18M3 12h18M3 18h18"/></svg><div class="icon-box__label">Menu</div></div>
+        <div class="icon-box"><svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M18 6L6 18M6 6l12 12"/></svg><div class="icon-box__label">Fermer</div></div>
+        <div class="icon-box"><svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="11" cy="11" r="8"/><path d="M21 21l-4.35-4.35"/></svg><div class="icon-box__label">Recherche</div></div>
+        <div class="icon-box"><svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="21" r="1"/><circle cx="20" cy="21" r="1"/><path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"/></svg><div class="icon-box__label">Panier</div></div>
+        <div class="icon-box"><svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg><div class="icon-box__label">Utilisateur</div></div>
+        <div class="icon-box"><svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="M22 6l-10 7L2 6"/></svg><div class="icon-box__label">Email</div></div>
+        <div class="icon-box"><svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg><div class="icon-box__label">Téléphone</div></div>
+        <div class="icon-box"><svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg><div class="icon-box__label">Localisation</div></div>
+        <div class="icon-box"><svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg><div class="icon-box__label">Flèche</div></div>
+        <div class="icon-box"><svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg><div class="icon-box__label">Check</div></div>
+        <div class="icon-box"><svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg><div class="icon-box__label">Plus</div></div>
+        <div class="icon-box"><svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 19V5M5 12l7-7 7 7"/></svg><div class="icon-box__label">Retour haut</div></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="charte-section">
+    <div class="container">
+      <p class="charte-section__number">04 — Support & blog</p>
+      <h2 class="charte-section__title">Aide et contenu</h2>
+      <div class="icon-grid">
+        <div class="icon-box"><svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"/><path d="M12 17h.01"/></svg><div class="icon-box__label">Aide</div></div>
+        <div class="icon-box"><svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"/></svg><div class="icon-box__label">Chat</div></div>
+        <div class="icon-box"><svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 9a3 3 0 0 1 3-3h14a3 3 0 0 1 3 3v0a3 3 0 0 0 0 6v0a3 3 0 0 1-3 3H5a3 3 0 0 1-3-3v0a3 3 0 0 0 0-6z"/><path d="M13 5v2M13 17v2M13 11v2"/></svg><div class="icon-box__label">Ticket</div></div>
+        <div class="icon-box"><svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg><div class="icon-box__label">Blog</div></div>
+        <div class="icon-box"><svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg><div class="icon-box__label">Commentaires</div></div>
+        <div class="icon-box"><svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><path d="M8.59 13.51l6.83 3.98M15.41 6.51l-6.82 3.98"/></svg><div class="icon-box__label">Partager</div></div>
+        <div class="icon-box"><svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"/></svg><div class="icon-box__label">Lien</div></div>
+        <div class="icon-box"><svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 21l-7-5-7 5V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2z"/></svg><div class="icon-box__label">Marque-page</div></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="charte-section">
+    <div class="container">
+      <p class="charte-section__number">05 — E-commerce</p>
+      <h2 class="charte-section__title">Commerce et paiement</h2>
+      <div class="icon-grid">
+        <div class="icon-box"><svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="1" y="4" width="22" height="16" rx="2"/><path d="M1 10h22"/><path d="M6 15h4"/></svg><div class="icon-box__label">Paiement</div></div>
+        <div class="icon-box"><svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="1" y="3" width="15" height="13"/><path d="M16 8h4l3 3v5h-7V8z"/><circle cx="5.5" cy="18.5" r="2.5"/><circle cx="18.5" cy="18.5" r="2.5"/></svg><div class="icon-box__label">Livraison</div></div>
+        <div class="icon-box"><svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 7v6h6"/><path d="M3 13a9 9 0 1 0 3-7.7L3 8"/></svg><div class="icon-box__label">Retour</div></div>
+        <div class="icon-box"><svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg><div class="icon-box__label">Souhaits</div></div>
+        <div class="icon-box"><svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20.59 13.41l-7.17 7.17a2 2 0 0 1-2.83 0L2 12V2h10l8.59 8.59a2 2 0 0 1 0 2.82z"/><circle cx="7" cy="7" r="1" fill="currentColor"/></svg><div class="icon-box__label">Promotion</div></div>
+        <div class="icon-box"><svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M14 2v6h6"/><path d="M8 13h8M8 17h5"/></svg><div class="icon-box__label">Facture</div></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="charte-section">
+    <div class="container">
+      <p class="charte-section__number">06 — Éducation</p>
+      <h2 class="charte-section__title">Apprentissage</h2>
+      <div class="icon-grid">
+        <div class="icon-box"><svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="6"/><path d="M15.477 12.89L17 22l-5-3-5 3 1.523-9.11"/></svg><div class="icon-box__label">Certificat</div></div>
+        <div class="icon-box"><svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="2.18"/><path d="M10 8l6 4-6 4z" fill="currentColor"/></svg><div class="icon-box__label">Vidéo</div></div>
+        <div class="icon-box"><svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 11l3 3L22 4"/><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"/></svg><div class="icon-box__label">Quiz</div></div>
+        <div class="icon-box"><svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg><div class="icon-box__label">Durée</div></div>
+        <div class="icon-box"><svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg><div class="icon-box__label">Niveau</div></div>
+        <div class="icon-box"><svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9H4.5a2.5 2.5 0 0 1 0-5H6M18 9h1.5a2.5 2.5 0 0 0 0-5H18M4 22h16M10 14.66V17c0 .55-.47.98-.97 1.21C7.85 18.75 7 20.24 7 22M14 14.66V17c0 .55.47.98.97 1.21C16.15 18.75 17 20.24 17 22M18 2H6v7a6 6 0 0 0 12 0V2z"/></svg><div class="icon-box__label">Trophée</div></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="charte-section">
+    <div class="container">
+      <p class="charte-section__number">07 — Impact</p>
+      <h2 class="charte-section__title">Communauté et fondation</h2>
+      <div class="icon-grid">
+        <div class="icon-box"><svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87M16 3.13a4 4 0 0 1 0 7.75"/></svg><div class="icon-box__label">Équipe</div></div>
+        <div class="icon-box"><svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="8.5" cy="7" r="4"/><path d="M20 8v6M23 11h-6"/></svg><div class="icon-box__label">Ajouter</div></div>
+        <div class="icon-box"><svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="5" width="20" height="14" rx="2"/><path d="M2 10h20"/><path d="M8 15h4"/></svg><div class="icon-box__label">Fidélité</div></div>
+        <div class="icon-box"><svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2l2.5 2.5L18 4l1 3.5L22 9l-1.5 3L22 15l-3 1.5L18 20l-3.5-.5L12 22l-2.5-2.5L6 20l-1-3.5L2 15l1.5-3L2 9l3-1.5L6 4l3.5.5z"/><path d="M9 12l2 2 4-4"/></svg><div class="icon-box__label">Vérifié</div></div>
+        <div class="icon-box"><svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 12v10H4V12M2 7h20v5H2zM12 22V7M12 7H7.5a2.5 2.5 0 0 1 0-5C11 2 12 7 12 7zM12 7h4.5a2.5 2.5 0 0 0 0-5C13 2 12 7 12 7z"/></svg><div class="icon-box__label">Cadeau</div></div>
+        <div class="icon-box"><svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="15" r="6"/><path d="M8.5 9L6 2h12l-2.5 7"/></svg><div class="icon-box__label">Médaille</div></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="charte-section">
+    <div class="container">
+      <p class="charte-section__number">08 — Règles</p>
+      <h2 class="charte-section__title">Utilisation des icônes</h2>
+      <div class="grid-3">
+        <div class="charte-card"><p class="charte-label" style="color:#16A34A;">À faire</p><p style="font-size:13px; color:var(--gris); line-height:1.8;">✓ Épaisseur constante : 2px<br>✓ Coins arrondis<br>✓ Grille 24×24<br>✓ Couleur via currentColor<br>✓ Taille min : 24px</p></div>
+        <div class="charte-card"><p class="charte-label" style="color:#DC2626;">À ne pas faire</p><p style="font-size:13px; color:var(--gris); line-height:1.8;">✗ Pas d'emoji<br>✗ Pas de remplissage plein<br>✗ Pas d'ombres portées<br>✗ Ne pas déformer<br>✗ Ne pas mélanger les styles</p></div>
+        <div class="charte-card"><p class="charte-label">Couleurs par pôle</p><p style="font-size:13px; color:var(--gris); line-height:1.8;">Tech · #2563EB<br>Store · #16A34A<br>Academy · #EAB308<br>Impact · #BE123C<br>Network · #F59E0B</p></div>
+      </div>
+    </div>
+  </section>
+</main>
+
+<!-- ==================== FOOTER ==================== -->
+<footer class="footer">
+  <div class="container footer__container">
+    <div class="footer__brand">
+      <a class="logo" onclick="goTo('accueil')">
+        <div class="logo__mark"><span>J</span></div>
+        <span class="logo__text">Jos<span>Dore</span></span>
+      </a>
+      <p class="footer__tagline">La technologie au service de la communauté.</p>
+    </div>
+    <div class="footer__col"><h5>Tech</h5><ul><li><a onclick="goTo('tech')">Maintenance</a></li><li><a onclick="goTo('tech')">Outils gratuits</a></li></ul></div>
+    <div class="footer__col"><h5>Store</h5><ul><li><a onclick="goTo('store')">Boutique</a></li><li><a onclick="goTo('store')">Livres</a></li></ul></div>
+    <div class="footer__col"><h5>Academy</h5><ul><li><a onclick="goTo('academy')">Formations</a></li><li><a onclick="goTo('academy')">Anglais</a></li><li><a onclick="goTo('academy')">Jeux</a></li></ul></div>
+    <div class="footer__col"><h5>Projet</h5><ul><li><a onclick="goTo('charte')">Charte</a></li><li><a onclick="goTo('icones')">Icônes</a></li><li><a onclick="goTo('impact')">Impact</a></li></ul></div>
+  </div>
+  <div class="footer__bottom">
+    <div class="container footer__bottom-container">
+      <p>© 2026 JosDore — Fondé par Ulrich Jos Doré HOUNKPE</p>
+      <p>Bénin 🇧🇯</p>
+    </div>
+  </div>
+</footer>
+
+<button class="to-top" id="toTop" aria-label="Retour en haut">
+  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 19V5M5 12l7-7 7 7"/></svg>
+</button>
+
+<script>
+(function () {
+  'use strict';
+
+  /* NAVIGATION SPA */
+  window.goTo = function (pageName, anchorId) {
+    document.querySelectorAll('.page').forEach(function (p) { p.classList.remove('is-active'); });
+    var page = document.getElementById('page-' + pageName);
+    if (page) page.classList.add('is-active');
+    document.querySelectorAll('.nav__link').forEach(function (link) {
+      link.classList.remove('is-active');
+      if (link.getAttribute('data-page') === pageName) link.classList.add('is-active');
+    });
+    closeMenu();
+    setTimeout(function () {
+      if (anchorId) scrollToId(anchorId);
+      else window.scrollTo({ top: 0, behavior: 'smooth' });
+      initReveal();
+    }, 100);
+  };
+
+  window.scrollToId = function (id) {
+    var t = document.getElementById(id);
+    if (t) {
+      var offsetTop = t.getBoundingClientRect().top + window.scrollY - 80;
+      window.scrollTo({ top: offsetTop, behavior: 'smooth' });
+    }
+  };
+
+  /* MENU BURGER */
+  var burger = document.getElementById('burger');
+  var nav = document.getElementById('nav');
+
+  function closeMenu() {
+    if (burger && nav) {
+      burger.classList.remove('is-active');
+      nav.classList.remove('is-open');
+      document.body.style.overflow = '';
+    }
+  }
+
+  if (burger && nav) {
+    burger.addEventListener('click', function () {
+      burger.classList.toggle('is-active');
+      nav.classList.toggle('is-open');
+      document.body.style.overflow = nav.classList.contains('is-open') ? 'hidden' : '';
+    });
+    document.addEventListener('click', function (e) {
+      if (nav.classList.contains('is-open') && !nav.contains(e.target) && !burger.contains(e.target)) closeMenu();
+    });
+  }
+
+  /* RETOUR EN HAUT */
+  var toTop = document.getElementById('toTop');
+  if (toTop) {
+    toTop.addEventListener('click', function () { window.scrollTo({ top: 0, behavior: 'smooth' }); });
+    window.addEventListener('scroll', function () {
+      if (window.scrollY > 500) toTop.classList.add('is-visible');
+      else toTop.classList.remove('is-visible');
+    }, { passive: true });
+  }
+
+  /* REVEAL */
+  function initReveal() {
+    var els = document.querySelectorAll('.pole, .why__item, .section-head, .service-card, .product-card, .category-card, .quote__text, .cta__title, .charte-card, .color-swatch, .font-specimen, .rule-card, .icon-box');
+    els.forEach(function (el) { el.classList.remove('is-visible'); el.classList.add('reveal'); });
+    if ('IntersectionObserver' in window) {
+      var obs = new IntersectionObserver(function (entries) {
+        entries.forEach(function (e) {
+          if (e.isIntersecting) { e.target.classList.add('is-visible'); obs.unobserve(e.target); }
+        });
+      }, { threshold: 0.1, rootMargin: '0px 0px -50px 0px' });
+      els.forEach(function (el) { obs.observe(el); });
+    } else {
+      els.forEach(function (el) { el.classList.add('is-visible'); });
+    }
+  }
+
+  /* FORMULAIRE */
+  window.handleSubmit = function (e) {
+    e.preventDefault();
+    alert('Merci ! Votre demande a bien été envoyée. Nous vous répondrons sous 24h.');
+    e.target.reset();
+  };
+
+  window.addEventListener('DOMContentLoaded', function () { initReveal(); });
+})();
+</script>
+
+</body>
+</html>
